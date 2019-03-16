@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.text.ParseException;
 
 @Controller
 @RequestMapping("/menu")
@@ -65,6 +66,25 @@ public class MenuController extends BaseController{
         if (adminId != -1)
             return menuService.editMenuDetail(menuDetailRequest);
         else {
+            PermissionException e = new PermissionException("Admin is logout.");
+            log.warn("Admin is logout.", e);
+            return new MenuDetailResponse(e);
+        }
+    }
+
+    /***
+     * 新增披萨
+     * @request
+     * @return
+     */
+    @RequestMapping(value = "/addNewMenu",method = RequestMethod.GET)
+    @ResponseBody
+    public BaseResponse addNewMenu(@RequestBody MenuDetailRequest request) throws ParseException,BusinessServerException{
+        int adminId = getCurrentAdminId();
+        if(adminId!=-1) {
+            return menuService.addNewMenu(request);
+        }
+        else{
             PermissionException e = new PermissionException("Admin is logout.");
             log.warn("Admin is logout.", e);
             return new MenuDetailResponse(e);

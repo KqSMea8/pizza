@@ -14,6 +14,7 @@ public class MenuEntity {
     private Integer tag;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     public int getId() {
         return id;
