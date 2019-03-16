@@ -81,8 +81,15 @@ public class Ingredient {
     }
 
     public Ingredient(IngredientEntity ingredientEntity){
-        CopyUtils.copyProperties(ingredientEntity,this);
+        this.id = 0;
+        this.name = "";
+        this.supplierName = "";
+        this.state = 0;
+        this.alermNum = 0;
+        this.count = 0;
         this.menuNeedCount = 0;
+        CopyUtils.copyProperties(ingredientEntity,this);
+
     }
 
     @Override

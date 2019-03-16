@@ -146,7 +146,7 @@ public class OrderService {
         }
 
         //下单时间的格式转换
-        String commitTimePattern = "yyyy/MM/dd hh/MM/ss";
+        String commitTimePattern = "yyyy/MM/dd hh:MM:ss";
         DateFormat df = new SimpleDateFormat(commitTimePattern);
         if(orderEntity.getCommitTime()!=null)
             order.setCommitTime(df.format(orderEntity.getCommitTime()));
@@ -155,7 +155,7 @@ public class OrderService {
 
     private Order convertDetail(OrderEntity orderEntity){
         Order order = convertSimple(orderEntity);
-        String commitTimePattern = "yyyy/MM/dd hh/MM/ss";
+        String commitTimePattern = "yyyy/MM/dd hh:MM:ss";
         DateFormat df = new SimpleDateFormat(commitTimePattern);
 
         //设置订购的披萨信息
